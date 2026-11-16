@@ -1,0 +1,9 @@
+CLAUDE.md
+FinalProject_DL.pdf
+PLAN.md
+# data, checkpoints, caches (never commit: OpenFake is CC BY-NC 4.0)
+*.npy
+*.pt
+runs/
+__pycache__/
+*.pyc
