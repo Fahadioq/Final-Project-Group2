@@ -1,0 +1,101 @@
+model,canonical,lineage,denoiser,autoencoder,access,status,style,notes
+laion,laion,real,,,,source,,core train/validation reals (ReLAION-5B filtered)
+pexels,pexels,real,,,,source,,core train/validation reals
+docci,docci,real,,,,source,,core/test reals only
+imagenet,imagenet,real,,,,source,,core/test reals only
+reddit,reddit,wild,,,,source,,reddit configs: label column decides real vs fake
+sd-1.4,sd-1.4,sd12,UNet,SD kl-f8 VAE (4-ch),open,draft,,
+stable-diffusion-v1-4,sd-1.4,sd12,UNet,SD kl-f8 VAE (4-ch),open,draft,,duplicate string of sd-1.4
+sd-1.5,sd-1.5,sd12,UNet,SD kl-f8 VAE (4-ch),open,draft,,
+stable-diffusion-v1-5,sd-1.5,sd12,UNet,SD kl-f8 VAE (4-ch),open,draft,,duplicate string of sd-1.5
+sd-1.5-dreamshaper,sd-1.5-dreamshaper,sd12,UNet,SD kl-f8 VAE (4-ch),open,draft,,fine-tune
+sd-1.5-epicdream,sd-1.5-epicdream,sd12,UNet,SD kl-f8 VAE (4-ch),open,draft,,fine-tune
+realistic_vision_v5.1_novae,realistic-vision-v5.1,sd12,UNet,SD kl-f8 VAE (4-ch),open,verify,,fine-tune; 'novae' means no baked-in VAE
+sd-2.1,sd-2.1,sd12,UNet,SD kl-f8 VAE (4-ch),open,draft,,
+sd-turbo,sd-turbo,sd12,UNet,SD kl-f8 VAE (4-ch),open,draft,,distilled from SD 2.1
+sdxl,sdxl,sdxl,UNet,SDXL VAE (4-ch),open,draft,,
+sdxl-1.0,sdxl,sdxl,UNet,SDXL VAE (4-ch),open,draft,,duplicate string of sdxl
+stable-diffusion-xl-base-1.0,sdxl,sdxl,UNet,SDXL VAE (4-ch),open,draft,,duplicate string of sdxl
+sd-xl-v1.0-vae-fix,sdxl-vae-fix,sdxl,UNet,SDXL VAE fp16-fix (verify),open,verify,,SDXL with a fixed VAE?
+sdxl-turbo,sdxl-turbo,sdxl,UNet,SDXL VAE (4-ch),open,draft,,
+sdxl-juggernaut,sdxl-juggernaut,sdxl,UNet,SDXL VAE (4-ch),open,draft,,fine-tune
+sdxl-realvis-v5,sdxl-realvis-v5,sdxl,UNet,SDXL VAE (4-ch),open,draft,,fine-tune
+realvisxl_v4.0,realvisxl-v4.0,sdxl,UNet,SDXL VAE (4-ch),open,draft,,fine-tune
+sdxl-epic-realism,sdxl-epic-realism,sdxl,UNet,SDXL VAE (4-ch),open,draft,,fine-tune
+sdxl-touchofrealism,sdxl-touchofrealism,sdxl,UNet,SDXL VAE (4-ch),open,draft,,fine-tune
+animagine-xl-3.0,animagine-xl-3.0,sdxl,UNet,SDXL VAE (4-ch),open,draft,anime,anime fine-tune
+animagine-xl-3.1,animagine-xl-3.1,sdxl,UNet,SDXL VAE (4-ch),open,draft,anime,anime fine-tune
+animagine-xl-4.0,animagine-xl-4.0,sdxl,UNet,SDXL VAE (4-ch),open,draft,anime,anime fine-tune
+pony,pony,sdxl,UNet,SDXL VAE (4-ch),open,draft,illustration,Pony Diffusion; contact sheet 2026-11-18: illustration / cartoon / 3D render
+cyberrealistic-pony-v14.0,cyberrealistic-pony-v14.0,sdxl,UNet,SDXL VAE (4-ch),open,draft,,Pony fine-tune
+cyberrealistic-pony-v14.1,cyberrealistic-pony-v14.1,sdxl,UNet,SDXL VAE (4-ch),open,draft,,Pony fine-tune
+cyberrealistic-pony-v15.0,cyberrealistic-pony-v15.0,sdxl,UNet,SDXL VAE (4-ch),open,draft,,Pony fine-tune
+cyberrealistic-pony-v16.0,cyberrealistic-pony-v16.0,sdxl,UNet,SDXL VAE (4-ch),open,draft,,Pony fine-tune
+cyberrealistic-pony-v17.0,cyberrealistic-pony-v17.0,sdxl,UNet,SDXL VAE (4-ch),open,draft,,Pony fine-tune
+cyberrealistic-xl-v9.0,cyberrealistic-xl-v9.0,sdxl,UNet,SDXL VAE (4-ch),open,draft,,fine-tune
+cyberrealistic-xl-v10.0,cyberrealistic-xl-v10.0,sdxl,UNet,SDXL VAE (4-ch),open,draft,,fine-tune
+novaanimexl_ilv140,novaanimexl-il-v140,sdxl,UNet,SDXL VAE (4-ch),open,draft,anime,Illustrious-based
+noobai,noobai,sdxl,UNet,SDXL VAE (4-ch),open,draft,anime,Illustrious-based
+one-obsession-17-red-sdxl,one-obsession-17-red-sdxl,sdxl,UNet,SDXL VAE (4-ch),open,draft,,fine-tune; contact sheet 2026-11-18: mixed anime and semi-photoreal; stays in training
+illustrious,illustrious,sdxl,UNet,SDXL VAE (4-ch),open,draft,anime,core/test held-out
+playground-v2.5-1024px-aesthetic,playground-v2.5,sdxl,UNet,SDXL VAE (verify),open,verify,,SDXL architecture with EDM
+kolors-v1.0,kolors,sdxl,UNet,SDXL VAE (verify),open,verify,,SDXL-like UNet with ChatGLM text encoder
+sd-3.5,sd-3.5,sd35,MMDiT,SD3 VAE (16-ch),open,draft,,
+flux.1-dev,flux.1-dev,flux1,MMDiT,FLUX.1 VAE (16-ch),open,draft,,
+flux.1-schnell,flux.1-schnell,flux1,MMDiT,FLUX.1 VAE (16-ch),open,draft,,
+flux-1.1-pro,flux-1.1-pro,flux1,MMDiT,FLUX.1 VAE (16-ch),closed,verify,,API-only
+flux-mvc5000,flux-mvc5000,flux1,MMDiT,FLUX.1 VAE (16-ch),open,verify,,community FLUX model or LoRA
+flux-amateursnapshotphotos,flux-amateursnapshotphotos,flux1,MMDiT,FLUX.1 VAE (16-ch),open,draft,,LoRA
+flux-realism,flux-realism,flux1,MMDiT,FLUX.1 VAE (16-ch),open,draft,,LoRA
+twbabeflux-v1,twbabeflux-v1,flux1,MMDiT,FLUX.1 VAE (16-ch),open,verify,,community FLUX fine-tune
+openflux.1,openflux.1,flux1,MMDiT,FLUX.1 VAE (16-ch),open,draft,,de-distilled FLUX.1-schnell
+chroma,chroma,flux1,MMDiT,FLUX.1 VAE (16-ch),open,verify,,derived from FLUX.1-schnell
+flux.2-dev,flux.2-dev,flux2,DiT,FLUX.2 VAE,open,draft,,
+flux.2-klein-4b,flux.2-klein-4b,flux2,DiT,FLUX.2 VAE,open,draft,,
+flux.2-klein-base-4b,flux.2-klein-base-4b,flux2,DiT,FLUX.2 VAE,open,draft,,
+flux.2-klein-9b,flux.2-klein-9b,flux2,DiT,FLUX.2 VAE,open,draft,,core/test held-out
+hidream-i1-full,hidream-i1-full,other_dit,sparse DiT (17B),FLUX.1-schnell VAE,open,confirmed,,HF model card: VAE from FLUX.1 [schnell]; shares its autoencoder with flux1
+qwen-image,qwen-image,other_dit,MMDiT,Qwen-Image VAE,open,draft,,own VAE; also used by Anima
+z-image-turbo,z-image-turbo,other_dit,DiT,FLUX.1 VAE? (verify),open,verify,,core/test held-out
+anima-preview,anima-preview,other_dit,DiT (Cosmos-Predict2-2B fine-tune),Qwen-Image VAE,open,confirmed,anime,CircleStone Labs + Comfy Org; 2B; Qwen3-0.6B text encoder; anime/illustration-focused and not photoreal (HF model card)
+anima-preview2,anima-preview2,other_dit,DiT (Cosmos-Predict2-2B fine-tune),Qwen-Image VAE,open,confirmed,anime,CircleStone Labs + Comfy Org; 2B; Qwen3-0.6B text encoder; anime/illustration-focused and not photoreal (HF model card)
+dalle-3,dalle-3,proprietary,unknown,unknown,closed,draft,,
+gpt-image-1,gpt-image-1,proprietary,autoregressive,unknown,closed,draft,,
+gpt-image-1.5,gpt-image-1.5,proprietary,autoregressive,unknown,closed,draft,,core/test held-out
+gpt-image-2,gpt-image-2,proprietary,autoregressive?,unknown,closed,verify,,core/test held-out
+midjourney-6,midjourney-6,proprietary,unknown,unknown,closed,draft,,
+midjourney-7,midjourney-7,proprietary,unknown,unknown,closed,draft,,core/test held-out
+imagen-3.0-002,imagen-3,proprietary,unknown,unknown,closed,draft,,
+imagen-4.0,imagen-4,proprietary,unknown,unknown,closed,draft,,
+ideogram-2.0,ideogram-2.0,proprietary,unknown,unknown,closed,draft,,core/test held-out
+ideogram-3.0,ideogram-3.0,proprietary,unknown,unknown,closed,draft,,
+grok-2-image-1212,grok-2,proprietary,unknown,unknown,closed,draft,,
+grok-imagine,grok-imagine,proprietary,unknown,unknown,closed,draft,,
+mystic,mystic,proprietary,unknown,unknown,closed,verify,,Freepik; reportedly FLUX-based
+seedream-v4.0,seedream-4.0,proprietary,unknown,unknown,closed,draft,,
+seedream-v4.5,seedream-4.5,proprietary,unknown,unknown,closed,draft,,
+seedream-v5.0,seedream-5.0,proprietary,unknown,unknown,closed,draft,,core/test held-out
+nano-banana-2,nano-banana-2,proprietary,unknown,unknown,closed,draft,,
+nano-banana-pro,nano-banana-pro,proprietary,unknown,unknown,closed,draft,,core/test held-out
+recraft-v2,recraft-v2,proprietary,unknown,unknown,closed,draft,,core/test held-out
+recraft-v3,recraft-v3,proprietary,unknown,unknown,closed,draft,,core/test held-out
+ernie-image,ernie-image,proprietary,unknown,unknown,closed,verify,,core/test held-out; check access
+ernie-image-turbo,ernie-image-turbo,proprietary,unknown,unknown,closed,verify,,core/test held-out; check access
+wan-video-2.1,wan-2.1,video,video DiT,Wan VAE,open,draft,,frames
+wan-video-2.2,wan-2.2,video,video DiT,Wan VAE,open,draft,,frames
+wan-video-2.5,wan-2.5,video,video DiT,Wan VAE?,closed,verify,,frames; core/test held-out
+studio-ghibli-wan2.1-t2v-14b-v1.0,wan-2.1-ghibli-lora,video,video DiT,Wan VAE,open,draft,,Wan 2.1 LoRA frames
+look-back-wan2.1-t2v-14b-v1.0,wan-2.1-look-back-lora,video,video DiT,Wan VAE,open,draft,,Wan 2.1 LoRA frames
+hunyuan-video,hunyuan-video,video,video DiT,HunyuanVideo VAE,open,draft,,frames
+ltxv-2.3,ltxv-2.3,video,video DiT,LTX VAE,open,draft,,frames
+kling-video-v2.5-turbo,kling-2.5-turbo,video,unknown,unknown,closed,draft,,frames; first seen in Pass A (56 rows)
+veo-3,veo-3,video,unknown,unknown,closed,draft,,frames; core/test held-out
+sora-2,sora-2,video,unknown,unknown,closed,draft,,frames; core/test held-out
+tiny-random-sana,tiny-random-sana,exclude,DiT,DC-AE,open,confirmed,,pure-noise 1024x1024 JPEGs (random-weight test pipeline); contact sheet 2026-11-16
+amateur-photography-v2.0,amateur-photography-v2.0,unmapped,unknown,unknown,open,verify,,Civitai; base model unknown
+amateur-photography-v5-final,amateur-photography-v5,unmapped,unknown,unknown,open,verify,,Civitai; base model unknown
+amateur-photography-v6,amateur-photography-v6,unmapped,unknown,unknown,open,verify,,Civitai; base model unknown
+lumina-17-2-25,lumina-17-2-25,unmapped,unknown,unknown,unknown,verify,,date-tagged core/test entry
+aurora-20-1-25,aurora-20-1-25,unmapped,unknown,unknown,unknown,verify,,date-tagged core/test entry
+frames-23-1-25,frames-23-1-25,unmapped,unknown,unknown,unknown,verify,,date-tagged core/test entry
+halfmoon-4-4-25,halfmoon-4-4-25,unmapped,unknown,unknown,unknown,verify,,date-tagged core/test entry
