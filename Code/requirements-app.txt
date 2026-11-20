@@ -1,0 +1,3 @@
+# Streamlit app. On Final-Project-Group2, `pip install --dry-run streamlit` shows it would upgrade
+# pyarrow 25.0.0 -> 26.0.1 in ~/dl-venv; decide between that and a separate app venv before installing.
+streamlit==1.67.0
