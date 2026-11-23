@@ -1,0 +1,29 @@
+# ETL for core/train. Pass A and Pass B share these targets: Pass B tops up whatever
+# Pass A left below target (mostly Video and rare model strings).
+pool: core_train
+revision: v2.0
+pass_a_shards: 150
+
+targets:
+  lineage_cap: 10350        # 9k per lineage + 15% headroom; trimmed by hash rank at the census gate
+  string_cap: 2875          # 2.5k per model string + 15%; raised to lineage_cap / n_strings for lineages
+                            # with few strings, so SD3.5 (one string) can reach the lineage cap
+  real_caps:
+    laion: 40250            # 35k + 15%
+    pexels: 40250
+  real_default_cap: 2875
+  unmapped_cap: 300         # enough to inspect and map later; Pass B can top up once mapped
+  exclude_cap: 50           # e.g. tiny-random-sana: kept only for the Phase 0 contact sheet
+
+views:
+  size: 256
+  max_mp: 2.0               # density cap: images above 2 MP are downscaled to 1 MP for view C
+  target_mp: 1.0
+
+eligibility:
+  min_side: 256             # no upscaling anywhere
+
+runtime:
+  workers: 3                # decode processes (4 vCPUs; downloads use the rest)
+  downloads: 3              # concurrent shard downloads; one anonymous hf_xet stream measured ~64 MB/s
+  min_free_gb: 25           # stop starting new shards below this much free space on OF_DATA

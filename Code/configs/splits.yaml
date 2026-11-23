@@ -1,0 +1,28 @@
+# Census-gate decisions (PLAN section 16, decision 3; decided 2026-11-18). Read by etl/make_splits.py.
+# Lineages and styles come from taxonomy/generator_taxonomy.csv; counts from results/census_core_train.csv.
+pool: core_train
+
+# Training families for E0/E1/E2: each has >= 8k kept fakes after removing test-only strings.
+train_lineages: [sd12, sdxl, sd35, flux1, flux2, proprietary, video]
+
+# Scored in every run, never trained on: not in any training pool, dev set, or outlier-exposure set.
+#   other_dit: anima-* is 45% of it and anime-only; without anima it is 5.7k images from two unrelated
+#              DiTs with different autoencoders (HiDream shares FLUX.1-schnell's VAE).
+test_only_lineages: [other_dit]
+
+# Taxonomy `style` values that are test-only in every lineage (SDXL anime fine-tunes and pony, ~2.4k images;
+# SDXL keeps ~8.6k for training).
+test_only_styles: [anime, illustration]
+
+# Never used in training or evaluation.
+never_use_lineages: [exclude, unmapped]
+
+fakes_per_lineage: 8000   # per training family, trimmed by hash rank (E0, E1, E2)
+
+# Extra runs that override the defaults above; each becomes splits/<experiment>/<name>.parquet.
+extra_runs:
+  sdxl_anime:               # E1 style ablation (PLAN section 7)
+    experiment: E1
+    train_lineages: [sdxl]
+    test_only_styles: []    # SDXL anime and illustration strings train like any other (~1.8k of the 8k)
+    compare_with: sdxl      # the main E1 SDXL run: same fake count, reals, and seed
