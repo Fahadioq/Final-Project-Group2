@@ -6,3 +6,7 @@ FinalProject_DL.pdf
 runs/
 __pycache__/
 *.pyc
+
+# local IDE and macOS files
+.idea/
+.DS_Store

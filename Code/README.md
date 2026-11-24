@@ -28,7 +28,8 @@ ETL controls: stop gracefully with `touch ~/of_data/manifests/STOP` (delete the 
 resume by re-running the same command; check progress with `tail -f ~/of_data/logs/etl_core_train_pass*.log`;
 `--dry-run` prints the current per-bucket thresholds.
 
-Tests: `cd Code && ~/dl-venv/bin/python -m tests.test_etl`.
+Tests: `cd Code && ~/dl-venv/bin/python -m tests.test_etl` (Data) and `python -m tests.test_data` (Modeling data path).
+Loader benchmark: `cd Code && python -m data.memmap_dataset` (synthetic store) or `--split <split.parquet>` (real views).
 
 ## Layout and ownership
 
@@ -39,9 +40,9 @@ Tests: `cd Code && ~/dl-venv/bin/python -m tests.test_etl`.
 | `taxonomy/` | Data | `generator_taxonomy.csv`: model string -> canonical name, lineage, denoiser, autoencoder (draft; verify) |
 | `configs/` | each role, its own files | `etl_core_train.yaml` (caps, view recipe, runtime) |
 | `scripts/` | Data | `mount_nvme.sh`, `run_etl.sh`, `stage_data.sh`, `gpu_run.sh` |
-| `data/`, `models/`, `train.py`, `evaluate.py`, `inference.py` | Modeling | loader, GPU augmentation, backbones, two-head model, training, evaluation, inference API |
+| `data/`, `models/`, `train.py`, `evaluate.py`, `inference.py` | Modeling | loader (`memmap_dataset.py`), GPU augmentation (`gpu_aug.py`), synthetic stand-in store for testing (`standin.py`), backbones, two-head model, training, evaluation, inference API |
 | `analysis/`, `app/` | Analysis & App | metrics, shortcut baseline, transfer matrix, figures, mock runs, Streamlit app |
-| `tests/` | each role, its own files | `test_etl.py` |
+| `tests/` | each role, its own files | `test_etl.py`, `test_data.py` |
 
 ## Data on disk
 
