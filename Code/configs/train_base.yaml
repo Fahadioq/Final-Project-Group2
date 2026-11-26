@@ -1,0 +1,20 @@
+# Training defaults. Read by train.py; any key can be overridden with --set key=value.
+backbone: resnet50        # resnet50 | convnext_tiny | efficientnet_b4 (models/backbones.py)
+pretrained: true          # ImageNet weights from timm
+view: C                   # C (main) | R (resized) | N (native): stored views from the ETL
+two_heads: true           # false = binary-only model (E5 ablation)
+attr_weight: 0.5          # loss = BCE + attr_weight * CE
+dropout: 0.0
+jpeg_equalize: true       # JPEG at a random quality of 65-95 on both classes (protocol C+FE); false for N and plain C (E3)
+
+epochs: 6
+batch_size: 128
+lr_backbone: 1.0e-4
+lr_heads: 1.0e-3
+weight_decay: 0.05
+warmup_epochs: 1          # linear warm-up, then cosine decay to zero
+patience: 2               # stop after this many epochs without a better dev AUROC
+
+eval_batch_size: 256
+workers: 2                # 4 vCPUs on the instance
+seed: 0
