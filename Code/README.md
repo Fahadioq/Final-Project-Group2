@@ -19,7 +19,7 @@ every stop/start). Never commit images, crops, or checkpoints: the data is CC BY
 | 5 | evaluation pools (validation, test, reddit, supplements) | to do | Same ETL for the evaluation sets |
 | 6 | `cd Code && python -m etl.make_splits` | stub | Split files for E0-E6 |
 | 7 | `bash Code/scripts/stage_data.sh C R` | ready | Copy views from EBS to NVMe before training |
-| 8 | `bash Code/scripts/gpu_run.sh python Code/train.py ...` | stub | Train (queued behind the shared GPU lock) |
+| 8 | `bash Code/scripts/gpu_run.sh python Code/train.py --split <split.parquet> --run-id <name>` | ready | Train (queued behind the shared GPU lock); settings in `configs/train_base.yaml`, override with `--set key=value`; `--standin` checks the pipeline on synthetic data |
 | 9 | `python Code/evaluate.py ...` | stub | Predictions and metrics for every evaluation set |
 | 10 | `Code/analysis/*` | stub | Metrics, metadata baseline, transfer matrix, figures |
 | 11 | `streamlit run Code/app/Home.py` | stub | The app |
@@ -28,7 +28,7 @@ ETL controls: stop gracefully with `touch ~/of_data/manifests/STOP` (delete the 
 resume by re-running the same command; check progress with `tail -f ~/of_data/logs/etl_core_train_pass*.log`;
 `--dry-run` prints the current per-bucket thresholds.
 
-Tests: `cd Code && ~/dl-venv/bin/python -m tests.test_etl` (Data), `python -m tests.test_data` (Modeling data path), and `python -m tests.test_models` (two-head detector).
+Tests: `cd Code && ~/dl-venv/bin/python -m tests.test_etl` (Data), `python -m tests.test_data` (Modeling data path), `python -m tests.test_models` (two-head detector), and `python -m tests.test_train` (training and run directories).
 Loader benchmark: `cd Code && python -m data.memmap_dataset` (synthetic store) or `--split <split.parquet>` (real views).
 
 ## Layout and ownership
@@ -40,9 +40,9 @@ Loader benchmark: `cd Code && python -m data.memmap_dataset` (synthetic store) o
 | `taxonomy/` | Data | `generator_taxonomy.csv`: model string -> canonical name, lineage, denoiser, autoencoder (draft; verify) |
 | `configs/` | each role, its own files | `etl_core_train.yaml` (caps, view recipe, runtime) |
 | `scripts/` | Data | `mount_nvme.sh`, `run_etl.sh`, `stage_data.sh`, `gpu_run.sh` |
-| `data/`, `models/`, `train.py`, `evaluate.py`, `inference.py` | Modeling | loader (`memmap_dataset.py`), GPU augmentation (`gpu_aug.py`), synthetic stand-in store for testing (`standin.py`), backbones, two-head model, training, evaluation, inference API |
+| `data/`, `models/`, `train.py`, `evaluate.py`, `inference.py` | Modeling | loader (`memmap_dataset.py`), GPU augmentation (`gpu_aug.py`), synthetic stand-in store for testing (`standin.py`), backbones, two-head model (`models/`), training (`train.py`, `configs/train_base.yaml`), run directories and shared prediction code (`models/runs.py`), evaluation, inference API |
 | `analysis/`, `app/` | Analysis & App | metrics, shortcut baseline, transfer matrix, figures, mock runs, Streamlit app |
-| `tests/` | each role, its own files | `test_etl.py`, `test_data.py`, `test_models.py` |
+| `tests/` | each role, its own files | `test_etl.py`, `test_data.py`, `test_models.py`, `test_train.py` |
 
 ## Data on disk
 
