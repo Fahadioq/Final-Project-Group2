@@ -4,7 +4,7 @@ A backbone turns an image into one feature vector; the heads (models/heads.py) t
 Each backbone is created with num_classes=0, which removes its ImageNet classifier and keeps the global
 average pooling, so the output is a [B, n_features] tensor.
 
-  resnet50         primary (PLAN decision 1): the classic CNN baseline in fake-image detection
+  resnet50         primary: the team's chosen detector, the classic CNN baseline in fake-image detection
   convnext_tiny    secondary: a modern CNN, already cached on the group instance
   efficientnet_b4  optional
 

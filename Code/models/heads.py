@@ -7,7 +7,7 @@ One shared backbone, two small linear heads on its feature vector:
                     K = known generators + "unknown-generator" + known real sources + "unknown-real"
                     (the class list comes from the split file, see data/memmap_dataset.class_list)
 
-Loss = BCE + attr_weight * CE, with attr_weight = 0.5 (PLAN section 7, E5).
+Loss = BCE + attr_weight * CE, with attr_weight = 0.5, so attribution helps without outweighing detection.
 
 Two masks keep the attribution head from changing the detection experiments:
   - bce_mask = False: auxiliary real photos used only to teach "unknown-real". They are left out of the BCE
@@ -80,7 +80,7 @@ def probabilities(out: dict[str, torch.Tensor]) -> dict[str, torch.Tensor]:
 
 def param_groups(model: Detector, lr_backbone: float = 1e-4, lr_heads: float = 1e-3,
                  weight_decay: float = 0.05) -> list[dict]:
-    """Two learning rates for AdamW (PLAN section 8): small for the pretrained backbone, so its ImageNet
+    """Two learning rates for AdamW: small for the pretrained backbone, so its ImageNet
     features change slowly, and 10x larger for the new heads, which start from random weights."""
     heads = [p for name, p in model.named_parameters() if not name.startswith("backbone.")]
     return [
