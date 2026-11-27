@@ -62,9 +62,22 @@ def _index_row(pool: str, shard: str, i: int, label: str, model: str, kept: bool
     )
 
 
+def _role(u: float, test_sets: tuple[str, ...]) -> str:
+    """10% dev; with test sets, the next 20% is spread over them; the rest train. One random draw per row."""
+    if u < 0.1:
+        return "dev"
+    if test_sets and u < 0.3:
+        return f"test:{test_sets[int((u - 0.1) / 0.2 * len(test_sets))]}"
+    return "train"
+
+
 def make_standin_store(root: Path | str, n_shards: int = 3, rows_per_shard: int = 200,
-                       pool: str = "core_train", seed: int = 0) -> Path:
-    """Build the synthetic store under `root` and return the path of its split file."""
+                       pool: str = "core_train", seed: int = 0, test_sets: tuple[str, ...] = ()) -> Path:
+    """Build the synthetic store under `root` and return the path of its split file.
+
+    test_sets: names of evaluation sets to carve out of the store (role "test:<name>"), for checking
+    evaluate.py. Empty by default, so the store is identical to earlier versions.
+    """
     root = Path(root)
     rng = np.random.default_rng(seed)
     pattern = _fake_pattern()
@@ -99,7 +112,7 @@ def make_standin_store(root: Path | str, n_shards: int = 3, rows_per_shard: int 
                 vi += 1
                 split_rows.append(dict(
                     row_id=f"{pool}-{shard}-{i:05d}", pool=pool,
-                    role="dev" if rng.random() < 0.1 else "train",
+                    role=_role(rng.random(), test_sets),
                     attr_class=model, bce_mask=True,
                 ))
                 next_id += 1
